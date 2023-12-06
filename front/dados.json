@@ -1,0 +1,34 @@
+[
+  {
+      "titulo": "Duna",
+      "caminhoImagem": "filme1.jpg",
+      "descricao": "Em um planeta desértico e distante, um príncipe luta para proteger seu povo após descobrir o potencial de um recurso valioso.",
+      "lancamento": "2021",
+      "genero": ["Ficção científica", "Aventura"],
+      "ondeAssistir": ["HBO Max", "Prime Video"]
+  },
+  {
+      "titulo": "No Time to Die",
+      "caminhoImagem": "filme2.jpg",
+      "descricao": "O agente 007 enfrenta um novo desafio, confrontando um inimigo com uma perigosa tecnologia.",
+      "lancamento": "2021",
+      "genero": ["Ação", "Espionagem"],
+      "ondeAssistir": ["Prime Video", "Netflix"]
+  },
+  {
+      "titulo": "Spider-Man: No Way Home",
+      "caminhoImagem": "filme3.jpg",
+      "descricao": "Peter Parker busca ajuda de um feiticeiro para resolver problemas causados por um feitiço.",
+      "lancamento": "2021",
+      "genero": ["Ação", "Aventura", "Fantasia"],
+      "ondeAssistir": ["Cinema", "HBO Max"]
+  },
+  {
+      "titulo": "Cruella",
+      "caminhoImagem": "filme4.jpg",
+      "descricao": "A origem da infame vilã Cruella de Vil, conhecida por sua obsessão por peles de dálmatas.",
+      "lancamento": "2021",
+      "genero": ["Comédia", "Crime"],
+      "ondeAssistir": ["Disney+", "Prime Video"]
+  }
+]

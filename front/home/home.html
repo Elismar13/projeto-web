@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#quem-somos">Quem Somos</a></li>
+                <li><a href="#filmes">Filmes</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="carousel" id="movieCarousel">
+            <!-- Conteúdo do carrossel será gerado dinamicamente -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Cinema Awesome</p>
+    </footer>
+
+    <script>
+        // JSON com informações dos filmes
+        const filmes = [
+            {
+                "titulo": "Duna",
+                "caminhoImagem": "filme1.jpg",
+                "descricao": "Em um planeta desértico e distante, um príncipe luta para proteger seu povo após descobrir o potencial de um recurso valioso.",
+                "lancamento": "2021",
+                "genero": ["Ficção científica", "Aventura"],
+                "ondeAssistir": ["HBO Max", "Prime Video"]
+            },
+            {
+                "titulo": "No Time to Die",
+                "caminhoImagem": "filme2.jpg",
+                "descricao": "O agente 007 enfrenta um novo desafio, confrontando um inimigo com uma perigosa tecnologia.",
+                "lancamento": "2021",
+                "genero": ["Ação", "Espionagem"],
+                "ondeAssistir": ["Prime Video", "Netflix"]
+            },
+            {
+                "titulo": "Spider-Man: No Way Home",
+                "caminhoImagem": "filme3.jpg",
+                "descricao": "Peter Parker busca ajuda de um feiticeiro para resolver problemas causados por um feitiço.",
+                "lancamento": "2021",
+                "genero": ["Ação", "Aventura", "Fantasia"],
+                "ondeAssistir": ["Cinema", "HBO Max"]
+            },
+            {
+                "titulo": "Cruella",
+                "caminhoImagem": "filme4.jpg",
+                "descricao": "A origem da infame vilã Cruella de Vil, conhecida por sua obsessão por peles de dálmatas.",
+                "lancamento": "2021",
+                "genero": ["Comédia", "Crime"],
+                "ondeAssistir": ["Disney+", "Prime Video"]
+            }
+        ];
+
+        // Função para gerar o conteúdo do carrossel com base no JSON
+        function criarCarrossel(filmes) {
+            const carrossel = document.getElementById("movieCarousel");
+
+            filmes.forEach(filme => {
+                // console.log("Filme: ", filme)
+                const itemCarrossel = document.createElement("div");
+                itemCarrossel.classList.add("carousel-item");
+
+                const imagem = document.createElement("img");
+                imagem.src = filme.caminhoImagem;
+                imagem.alt = filme.titulo;
+
+                const titulo = document.createElement("h3");
+                titulo.textContent = filme.titulo;
+
+                const descricao = document.createElement("p");
+                descricao.textContent = filme.descricao;
+
+                itemCarrossel.appendChild(imagem);
+                itemCarrossel.appendChild(titulo);
+                itemCarrossel.appendChild(descricao);
+
+
+                carrossel.appendChild(itemCarrossel);
+                console.log("Elemento criado: ", itemCarrossel); // Adicionado para verificar se os elementos estão sendo gerados corretamente
+            });
+        }
+
+        // Chama a função para criar o carrossel com base no JSON de filmes
+        criarCarrossel(filmes);
+    </script>
+
+    <script src="scripts.js"></script>
+
+</body>
+
+</html>
