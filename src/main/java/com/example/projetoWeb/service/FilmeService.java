@@ -2,23 +2,31 @@ package com.example.projetoWeb.service;
 
 import com.example.projetoWeb.model.Filme;
 import com.example.projetoWeb.repository.FilmeRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
 
+
+@Service
 public class FilmeService {
 
     private FilmeRepository filmeRepository;
 
-    public List<Filme> listarTodos(){
-        return filmeRepository.findAll();
+    public Page<Filme> listarTodosPaginado(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return filmeRepository.findAll(pageable);
     }
 
-    public List<Filme> listarPorGenero(String genero){
-        return filmeRepository.findByGenero(genero);
+    public Page<Filme> listarPorGeneroPaginado(String genero, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return filmeRepository.findByGenero(genero, pageable);
     }
 
-    public Filme listarPorNome(String nome){
-        return filmeRepository.findByNome(nome);
+    public Page<Filme> listarPorNomePaginado(String nome, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return filmeRepository.findByNome(nome, pageable);
     }
 
 }
