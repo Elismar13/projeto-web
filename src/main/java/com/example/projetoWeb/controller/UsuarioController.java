@@ -18,7 +18,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping("/registrar")
+    @PostMapping("/cadastrar")
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Usuario> registrarUsuario(@RequestBody Usuario usuario) {
         Usuario novoUsuario = usuarioService.registrarUsuario(usuario);
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
@@ -27,10 +28,8 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<String> fazerLogin(@RequestParam String email, @RequestParam String senha) {
         Optional<Usuario> usuarioOptional = usuarioService.fazerLogin(email, senha);
-        return usuarioOptional.map(usuario -> usuario.getSenha().equals(senha) ?
-                new ResponseEntity<>("Login bem-sucedido", HttpStatus.OK) :
-                new ResponseEntity<>("Credenciais inválidas", HttpStatus.UNAUTHORIZED)).orElseGet(() -> usuarioOptional.map(usuario -> new ResponseEntity<>("Login bem-sucedido", HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>("Credenciais inválidas", HttpStatus.UNAUTHORIZED)));
+        return usuarioOptional.map(usuario -> new ResponseEntity<>("Login bem-sucedido", HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>("Credenciais inválidas", HttpStatus.UNAUTHORIZED));
     }
 
     @GetMapping("/todos")
