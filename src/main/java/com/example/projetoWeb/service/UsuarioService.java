@@ -11,18 +11,19 @@ import java.util.Optional;
 @Service
 public class UsuarioService {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     public Usuario registrarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
     public Optional<Usuario> fazerLogin(String email, String senha) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-        return usuarioOptional
-                .filter(usuario -> usuario.getSenha().equals(senha))
-                .map(Optional::of)
-                .orElse(Optional.empty());
+        return usuarioRepository.findByEmailAndSenha(email, senha);
     }
 
     public List<Usuario> buscarTodosUsuarios() {
