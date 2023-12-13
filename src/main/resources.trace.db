@@ -1,0 +1,15 @@
+2023-12-12 22:18:07.273897-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FILME" not found (this database is empty); SQL statement:
+select f1_0.id,f1_0.data_lancamento,f1_0.descricao,f1_0.genero,f1_0.local_exibicao,f1_0.poster,f1_0.titulo from filme f1_0 offset ? rows fetch first ? rows only [42104-224]
+2023-12-12 22:42:18.239277-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+insert into usuario (email,is_admin,nome,senha,id) values (?,?,?,?,default) [42104-224]
+2023-12-12 22:43:21.801575-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+insert into usuario (email,nome,senha,id) values (?,?,?,default) [42104-224]
+2023-12-12 22:48:00.195380-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2023-12-12 22:50:27.804551-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2023-12-12 22:51:53.889462-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

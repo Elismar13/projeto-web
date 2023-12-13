@@ -4,16 +4,22 @@ import com.example.projetoWeb.model.Filme;
 import com.example.projetoWeb.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/filmes")
 public class FilmeController {
 
     @Autowired
     private FilmeService filmeService;
+
+    @PostMapping("/criarFilme")
+    public ResponseEntity<Filme> criarFilme(@RequestBody Filme novoFilme) {
+        Filme filmeCriado = filmeService.criarFilme(novoFilme);
+        return new ResponseEntity<>(filmeCriado, HttpStatus.CREATED);
+    }
 
     @GetMapping("/listar")
     public ResponseEntity<Page<Filme>> listarFilmes(

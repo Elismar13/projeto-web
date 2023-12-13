@@ -30,4 +30,8 @@ public class FilmeService {
         Pageable pageable = PageRequest.of(page, size);
         return filmeRepository.findByTituloContaining(nome, pageable);
     }
+
+    public Filme criarFilme(Filme novoFilme) {
+        return filmeRepository.save(novoFilme);
+    }
 }
