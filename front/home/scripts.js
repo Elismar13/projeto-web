@@ -1,10 +1,12 @@
 // Implementação do carrossel simples
 let slideIndex = 0;
-carousel();
 
 function carousel() {
+
     let i;
     const slides = document.getElementsByClassName("carousel-item");
+    console.log("Carrossel rodando", slides, slideIndex)
+
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
