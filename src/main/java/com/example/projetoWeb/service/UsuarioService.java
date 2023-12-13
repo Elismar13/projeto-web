@@ -19,9 +19,6 @@ public class UsuarioService {
     }
 
     public Usuario registrarUsuario(Usuario usuario) {
-        if (usuario.getSenha() == null) {
-            usuario.setSenha("123456");
-        }
         return usuarioRepository.save(usuario);
     }
 
