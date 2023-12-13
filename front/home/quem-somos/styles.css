@@ -1,0 +1,39 @@
+/* Estilos para a página "Quem Somos" */
+#quem-somos {
+  padding: 50px 0;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.quem-somos-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.quem-somos-content h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.quem-somos-content h3 {
+  font-size: 1.8em;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.quem-somos-content p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.quem-somos-content ul {
+  text-align: left;
+  margin-left: 40px;
+}
+
+.quem-somos-content ul li {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
