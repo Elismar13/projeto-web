@@ -23,7 +23,7 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> fazerLogin(String email, String senha) {
-        return usuarioRepository.findByEmailAndSenha(email, senha);
+        return usuarioRepository.findByEmail(email);
     }
 
     public List<Usuario> buscarTodosUsuarios() {

@@ -16,7 +16,6 @@
             <ul class="menu">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../quem-somos/quem-somos.html">Quem Somos</a></li>
-                <li><a href="../filmes/filmes.html">Filmes</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
@@ -25,20 +24,17 @@
     <main>
         <section id="contato">
             <div class="contato-form">
-                <h2>Entre em Contato com a nossa equipe</h2>
-                <form action="enviar_email.php" method="post">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
-
+                <h2>Faça o login</h2>
+                <form id="loginForm" >
                     <label for="email">E-mail:</label>
                     <input type="email" id="email" name="email" required>
 
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" required></textarea>
+                    <label for="password">Senha:</label>
+                    <input id="password" name="password" type="password" required></input>
 
                     <input type="submit" value="Enviar">
                 </form>
-                <h3>Entraremos em contato o mais rápido possível! 👌🎥🎬</h3>
+                <h3 id="message">👌🎥🎬</h3>
             </div>
         </section>
     </main>
@@ -47,6 +43,29 @@
         <p>&copy; 2023 Cinema Awesome</p>
     </footer>
 
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let formData = {};
+            formData['email'] = document.getElementById('email').value;
+            formData['password'] = document.getElementById('password').value;
+            
+            console.log(formData)
+
+            fetch(`http://localhost:8080/usuarios/login?email=${formData['email']}&senha=${formData['password']}`, {
+                method: 'POST',
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('message').innerText = 'Login bem-sucedido 👌🎥🎬';
+                    location.replace("../filmes/filmes.html");
+                } else {
+                    document.getElementById('message').innerText = 'Credenciais inválidas 😓';
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+        });
+    </script>
 </body>
 
 </html>

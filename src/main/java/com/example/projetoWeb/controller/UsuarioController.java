@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin
 public class UsuarioController {
 
     @Autowired
@@ -26,8 +27,10 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<String> fazerLogin(@RequestParam String email, @RequestParam String senha) {
         Optional<Usuario> usuarioOptional = usuarioService.fazerLogin(email, senha);
-        return usuarioOptional.map(usuario -> new ResponseEntity<>("Login bem-sucedido", HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>("Credenciais inválidas", HttpStatus.UNAUTHORIZED));
+        return usuarioOptional.map(usuario -> usuario.getSenha().equals(senha) ?
+                new ResponseEntity<>("Login bem-sucedido", HttpStatus.OK) :
+                new ResponseEntity<>("Credenciais inválidas", HttpStatus.UNAUTHORIZED)).orElseGet(() -> usuarioOptional.map(usuario -> new ResponseEntity<>("Login bem-sucedido", HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>("Credenciais inválidas", HttpStatus.UNAUTHORIZED)));
     }
 
     @GetMapping("/todos")

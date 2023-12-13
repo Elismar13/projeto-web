@@ -27,6 +27,7 @@
 
 .contato-form input[type="text"],
 .contato-form input[type="email"],
+.contato-form input[type="password"],
 .contato-form textarea {
   width: 100%;
   padding: 10px;

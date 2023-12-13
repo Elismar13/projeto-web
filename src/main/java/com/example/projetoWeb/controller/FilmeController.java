@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/filmes")
+@CrossOrigin
 public class FilmeController {
 
     @Autowired
@@ -43,12 +44,12 @@ public class FilmeController {
         }
     }
 
-    @GetMapping("/buscarCategoria")
-    public ResponseEntity<Page<Filme>> buscarFilmePorGenero(
-            @RequestParam String genero,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Page<Filme> filmesGenero = filmeService.listarPorGeneroPaginado(genero, page, size);
-        return ResponseEntity.ok(filmesGenero);
-    }
+        @GetMapping("/buscarCategoria")
+        public ResponseEntity<Page<Filme>> buscarFilmePorGenero(
+                @RequestParam String genero,
+                @RequestParam(defaultValue = "0") int page,
+                @RequestParam(defaultValue = "10") int size) {
+            Page<Filme> filmesGenero = filmeService.listarPorGeneroPaginado(genero, page, size);
+            return ResponseEntity.ok(filmesGenero);
+        }
 }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../quem-somos/quem-somos.html">Quem Somos</a></li>
+                <li><a href="../contato/contato.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="select-filme">
+        <p>Selecione o gênero do filme: </p>
+        <select id="generoSelector">
+            <option value="">Selecione um gênero</option>
+            <option value="Ação">Ação</option>
+            <option value="Ficção Científica">Ficção Científica</option>
+            <option value="Drama">Drama</option>
+            <!-- Adicione mais opções de gênero conforme necessário -->
+        </select>
+    </div>
+
+    <div id="filmesContainer"></div>
+
+    <footer>
+        <p>&copy; 2023 Cinema Awesome</p>
+    </footer>
+
+    <script>
+        document.getElementById('generoSelector').addEventListener('change', function () {
+            const selectedGenre = this.value;
+            fetch(`http://localhost:8080/filmes/buscarCategoria?genero=${selectedGenre}`)
+                .then(response => response.json())
+                .then(data => {
+                    const filmes = data.content;
+
+                    // Limpa o container de filmes
+                    const filmesContainer = document.getElementById('filmesContainer');
+                    filmesContainer.innerHTML = '';
+
+                    filmes.forEach(filme => {
+                        const filmeDiv = document.createElement('div');
+                        filmeDiv.classList.add('filme');
+
+                        const titulo = document.createElement('h2');
+                        titulo.textContent = filme.titulo;
+
+                        const descricao = document.createElement('p');
+                        descricao.textContent = filme.descricao;
+
+                        const dataLancamento = document.createElement('p');
+                        dataLancamento.textContent = `Lançamento: ${filme.dataLancamento}`;
+
+                        const genero = document.createElement('p');
+                        genero.textContent = `Gênero: ${filme.genero}`;
+
+                        const localExibicao = document.createElement('p');
+                        localExibicao.textContent = `Local de Exibição: ${filme.localExibicao}`;
+
+                        const imagem = document.createElement('img');
+                        imagem.src = filme.poster; // Substitua "poster" pela URL/caminho da imagem
+
+                        filmeDiv.appendChild(imagem);
+                        filmeDiv.appendChild(titulo);
+                        filmeDiv.appendChild(descricao);
+                        filmeDiv.appendChild(dataLancamento);
+                        filmeDiv.appendChild(genero);
+                        filmeDiv.appendChild(localExibicao);
+
+                        filmesContainer.appendChild(filmeDiv);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar os filmes por gênero:', error));
+        });
+    </script>
+</body>
+
+</html>
